@@ -1,11 +1,11 @@
 package com.company;
 
-import java.io.IOException;
-import java.net.SocketException;
+import com.company.MyServerStuff.MyServer;
 
 public class networkappserver {
     public static void main (String[] args) throws Exception {
-        UDPServer server = new UDPServer();
-        server.run();
+        MyServer server = new MyServer();
+        //ResourceServer server = new ResourceServer();
+        //server.myRun();
     }
 }
