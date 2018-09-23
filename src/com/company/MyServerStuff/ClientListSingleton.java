@@ -25,7 +25,6 @@ public class ClientListSingleton {
     public void addClient(Client client)
     {
         clients.add(client);
-        client.broadcast();
     }
     
     public Client getLastPersonAdded()

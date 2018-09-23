@@ -32,7 +32,13 @@ public class Client implements Broadcast{
     }
     
     @Override
-    public String broadcast() {
-        return this.toString() + " joined the room.";
+    public void broadcast() {
+        
+    
+    }
+    
+    @Override
+    public String tellNewClientHasJoined() {
+       return this.toString() + " has joined the channel.";
     }
 }

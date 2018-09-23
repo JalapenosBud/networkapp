@@ -4,7 +4,8 @@ import com.company.MyServerStuff.MyServer;
 
 public class networkappserver {
     public static void main (String[] args) throws Exception {
-        MyServer server = new MyServer();
+        MultiEchoServerNIO server = new MultiEchoServerNIO();
+        server.myRun();
         //ResourceServer server = new ResourceServer();
         //server.myRun();
     }

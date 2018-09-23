@@ -40,13 +40,15 @@ public class MyServerMultiThread extends Thread {
             //so when a new client gets added
             ClientListSingleton.getInstance().addClient(new Client("Client",clientNo));
             
+            MyServer.clientSockets.add(clientSocket);
+            
             tmpClient = ClientListSingleton.getInstance().getLastPersonAdded();
     
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),true);
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             
             //broadcast new client is added
-            
+            out.println(ClientListSingleton.getInstance().getLastPersonAdded() + " has joined");
             
             
             System.out.println("Awaiting message...");

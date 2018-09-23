@@ -1,6 +1,7 @@
 package com.company.MyServerStuff;
 
 public interface Broadcast {
-    public String broadcast();
+    public void broadcast();
+    public String tellNewClientHasJoined();
     
 }
