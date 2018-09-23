@@ -38,7 +38,7 @@ public class MyServer {
     {
     
         clientNo++;
-        clients.add(new Client("Client", clientNo++));
+        clients.add(new Client("Client", clientNo));
         //fire event here
         //get last joined
         initiater.newUserJoined(clients.get(clients.size()-1));
