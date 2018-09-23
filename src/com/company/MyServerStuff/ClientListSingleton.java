@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ClientListSingleton {
     
-    public ArrayList<Client> clients = new ArrayList<>();
+    private ArrayList<Client> clients = new ArrayList<>();
     
     private static ClientListSingleton instance;
     
@@ -20,6 +20,17 @@ public class ClientListSingleton {
             instance = new ClientListSingleton();
         }
         return instance;
+    }
+    
+    public void addClient(Client client)
+    {
+        clients.add(client);
+        client.broadcast();
+    }
+    
+    public Client getLastPersonAdded()
+    {
+        return clients.get(clients.size() - 1);
     }
     
 }

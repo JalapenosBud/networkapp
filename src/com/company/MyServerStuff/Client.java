@@ -1,6 +1,6 @@
 package com.company.MyServerStuff;
 
-public class Client {
+public class Client implements Broadcast{
     private String name = "";
     private int number;
     
@@ -29,5 +29,10 @@ public class Client {
     @Override
     public String toString() {
         return name + "" + number;
+    }
+    
+    @Override
+    public String broadcast() {
+        return this.toString() + " joined the room.";
     }
 }

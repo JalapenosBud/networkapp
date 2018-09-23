@@ -6,12 +6,8 @@ import java.util.ArrayList;
 
 public class MyServer {
     
-    Initiater initiater = new Initiater();
-    Responder responder = new Responder();
-    
     public MyServer()
     {
-        initiater.addListener(responder);
         
         int port = 1234;
         boolean listening = true;
@@ -20,7 +16,7 @@ public class MyServer {
             while(listening)
             {
                 new MyServerMultiThread(serverSocket.accept()).start();
-                //addClient();
+                
             }
             
             
