@@ -8,11 +8,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class MyServerMultiThread extends Thread {
+public class MyServerMultiThread extends Thread implements BroadcastListener {
     
     ServerSocket serverSocket = null;
     Socket clientSocket = null;
     int port = 1234;
+    static int clientNo = 0;
+    Client tmpClient = null;
     String fromUser = "";
     
     public MyServerMultiThread(Socket socket)
@@ -28,6 +30,11 @@ public class MyServerMultiThread extends Thread {
             System.out.println("listening for connections...");
             //clientSocket = serverSocket.accept();
             System.out.println("Got a connection...");
+            //should make client to number 1 once connected
+            clientNo++;
+            //add new connected client to list
+            ClientListSingleton.getInstance().clients.add(new Client("Client",clientNo));
+            tmpClient = ClientListSingleton.getInstance().clients.get(ClientListSingleton.getInstance().clients.size()-1);
             
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),true);
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -39,7 +46,7 @@ public class MyServerMultiThread extends Thread {
                 fromUser = in.readLine();
                 if( fromUser != null)
                 {
-                    System.out.println("Client" + ": "+ fromUser);
+                    System.out.println(tmpClient + ": "+ fromUser);
                     
                     //print what we get sent from client
                     out.println(fromUser);
@@ -50,5 +57,10 @@ public class MyServerMultiThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    @Override
+    public void broadcastNewJoined(Client client) {
+    
     }
 }

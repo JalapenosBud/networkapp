@@ -5,12 +5,9 @@ import java.net.ServerSocket;
 import java.util.ArrayList;
 
 public class MyServer {
-
-    private ArrayList<Client> clients = new ArrayList<>();
     
     Initiater initiater = new Initiater();
     Responder responder = new Responder();
-    int clientNo = 0;
     
     public MyServer()
     {
@@ -23,7 +20,7 @@ public class MyServer {
             while(listening)
             {
                 new MyServerMultiThread(serverSocket.accept()).start();
-                addClient();
+                //addClient();
             }
             
             
@@ -34,14 +31,13 @@ public class MyServer {
         }
     }
     
-    private void addClient()
+    /*private void addClient()
     {
-    
         clientNo++;
         clients.add(new Client("Client", clientNo));
         //fire event here
         //get last joined
         initiater.newUserJoined(clients.get(clients.size()-1));
-    }
+    }*/
     
 }

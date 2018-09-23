@@ -1,5 +1,5 @@
 package com.company.MyServerStuff;
 
 public interface BroadcastListener {
-    void broadcastNewJoined();
+    void broadcastNewJoined(Client client);
 }
