@@ -12,19 +12,16 @@ public class MyServerMultiThread extends Thread {
     ServerSocket serverSocket = null;
     Socket clientSocket = null;
     int port = 1234;
-    int clientNo = 0;
     String fromUser = "";
     
-    public MyServerMultiThread(Socket socket, int clientNo)
+    public MyServerMultiThread(Socket socket)
     {
         super("MySuperServer");
         this.clientSocket = socket;
-        this.clientNo = clientNo;
     }
     
     public void run()
     {
-        clientNo++;
         try{
             // = new ServerSocket(port);
             System.out.println("listening for connections...");
@@ -41,7 +38,7 @@ public class MyServerMultiThread extends Thread {
                 fromUser = in.readLine();
                 if( fromUser != null)
                 {
-                    System.out.println("Client" + clientNo + ": "+ fromUser);
+                    System.out.println("Client" + ": "+ fromUser);
                     
                     //print what we get sent from client
                     out.println(fromUser);

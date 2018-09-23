@@ -8,21 +8,22 @@ public class MyServer {
 
     private ArrayList<Client> clients = new ArrayList<>();
     
+    Initiater initiater = new Initiater();
+    Responder responder = new Responder();
+    int clientNo = 0;
+    
     public MyServer()
     {
+        initiater.addListener(responder);
+        
         int port = 1234;
         boolean listening = true;
-        int clientNo = 0;
         try(ServerSocket serverSocket = new ServerSocket(port))
         {
             while(listening)
             {
-                new MyServerMultiThread(serverSocket.accept(),clientNo).start();
-                clients.add(new Client("MyName", clientNo++));
-                for (Client client :
-                        clients) {
-                    System.out.println(client.getName() + " " + client.getNumber());
-                }
+                new MyServerMultiThread(serverSocket.accept()).start();
+                addClient();
             }
             
             
@@ -31,6 +32,16 @@ public class MyServer {
             System.err.println("Could not listen on port " + port);
             System.exit(-1);
         }
+    }
+    
+    private void addClient()
+    {
+    
+        clientNo++;
+        clients.add(new Client("Client", clientNo++));
+        //fire event here
+        //get last joined
+        initiater.newUserJoined(clients.get(clients.size()-1));
     }
     
 }
