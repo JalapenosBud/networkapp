@@ -17,7 +17,7 @@ public class Initiater {
         
         for(BroadcastListener broadcastListener : listeners)
         {
-            broadcastListener.broadcastNewJoined();
+            broadcastListener.broadcastNewJoined(client);
         }
         
     }
