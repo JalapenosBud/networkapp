@@ -1,4 +1,4 @@
-package com.company;
+package com.company.NIO;
 
 import java.io.*;
 import java.net.*;
@@ -62,7 +62,7 @@ public class MultiEchoServerNIO
                         {
                             acceptData(key);
                         }
-                        if((keyOps & SelectionKey.OP_WRITE) == SelectionKey.OP_WRITE)
+                        if(key.isWritable())
                         {
                             writeDataToClient(key);
                         }
